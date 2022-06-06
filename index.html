@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+        *{
+        margin:0px;
+        padding:0px;
+      }
+      body{
+            background-color: rgb(222,221,221);
+        }
+        h1{
+          text-align:center;
+        }
+        h1+P{
+          text-align:right;
+        }
+      #form{
+        width:80%;
+            margin:auto;
+            background-color: white;
+            padding:40px 0px;
+      }
+      input,select{
+            display:block;
+            width:80%;
+            margin: 10px auto;
+            padding:1% 5px;
+        }
+        #reports{
+            width:80%;
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            grid-template-rows:repeat(1,200px);
+            line-height:20px;
+            height:800px;
+            border:1px solid red;
+            /* flex-wrap:wrap; */
+        }
+        #reports>div{
+            width:49%;
+            background-color: white;
+            height:300px;
+            margin-top:130px;
+            padding-left:20px;
+            padding-top:10px;
+            border:1px solid red;
+        }
+      #reports>div>h1{
+          margin-top:10px;
+        }
+        #reports>div>p{
+          margin-top:10px;
+        }
+        #reports>div>h3{
+          margin-top:10px;
+        }
+        #reports>div>button{
+          margin-top:10px;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="navbar">
+      <h3>Sign Up</h3>
+      <a href="voucher.html">Purchase Voucher</a>
+    </div> -->
+    <!-- - name input box :- "name"
+  - email input box :- "email"
+  - Address input box :- "address"
+  - Amount input box :- "amount" 
+  - Submit button :- "submit"
+  - The user will be stored with key:- "user"
+  - The input fields should become empty after submitting -->
+  <div id="container">
+    <div>
+      <h1>Sign Up</h1>
+      <P><a href="purchase.html">Purchase Voucher</a></P>
+      <form id="form">
+          <!-- When this form get submitted update the DOM According to the question -->
+        <input placeholder="Name" id="name" type="text"  />
+      
+        <input placeholder="Email" id="email" type="text" />
+
+        <input placeholder="Address" id="address" type="text" />
+
+        <input placeholder="Ad number to the wallet" id="amount" type="number" />
+        <input type="submit" />
+      </form>
+    </div>
+    <div id="reports">
+      <!-- All the cards that get appended with Javascript on form submit goes here -->
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="main.js"></script>
+
+<script>
+  var form=document.querySelector("#form");
+  var reports=document.querySelector("#reports");
+
+  function display(data){
+    var parent=document.createElement("div");
+    parent.style.boxShadow=" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px";
+
+    var name=document.createElement("h1");
+    name.innerText=data.name;
+
+    var email=document.createElement("p");
+    email.innerText=data.email;
+
+    var address=document.createElement("p");
+    address.innerText=data.address;
+
+    var amount=document.createElement("p");
+    amount.innerText=data.amount;
+
+   
+
+  //   var obtainedMarks1=Number(data.score);
+
+  // var td8 = document.createElement("h3");
+  // if(obtainedMarks1<=3){
+  //     td8.innerText="Learning";
+  //     td8.style.color="red";
+  // }else if(obtainedMarks1>=4 && obtainedMarks1<=7 ){
+  //     td8.innerText="Achieving";
+  //     td8.style.color="orange";
+  // }
+  // else if(obtainedMarks1>=8 && obtainedMarks1<=10 ){
+  //     td8.innerText="Mastery";
+  //     td8.style.color="green";
+  // }
+
+
+    var btn=document.createElement("button");
+    btn.textContent="DELETE";
+    btn.addEventListener("click",function(event){
+      event.target.parentNode.remove();
+    })
+
+    parent.append(name,email,address,amount,btn)
+
+    reports.append(parent);
+  }
+
+
+  form.addEventListener("submit",function(event){
+    event.preventDefault();
+
+    var data={
+      name:form.name.value,
+       email:form.email.value,
+       address:form.address.value,
+       amount:form.amount.value,
+    }
+    display(data);
+    console.log(data);
+  })
+  
+</script>
